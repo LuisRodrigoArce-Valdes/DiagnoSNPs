@@ -58,10 +58,15 @@ To run DiagnoSNPs simply run the following command:
 DiagnoSNPs.sh -v vcf -a first_group.txt -b second_group.txt -o dir -p prefix
 ```
 where:
+
 -v: path to the vcf input file.
+
 -a: path to a text file with the samples names of the first group.
+
 -b: path to a text file with the samples names of the second group.
+
 -o: path to a directory where to write the output file.
+
 -p: prefix for output file.
 
 For both samples names text files the format is simply a sample name per new line:
