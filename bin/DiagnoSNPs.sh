@@ -72,7 +72,7 @@ rm tmp_a.log tmp_b.log
 echo ""
 
 echo "02.- Looking for SNPs that are fixed in both populations"
-Rscript Comparing_fixed_SNPs.R
+Comparing_fixed_SNPs.R
 # Small format change
 tr "," "\t" < shared.txt > shared_snps.txt
 rm shared.txt tmp_a.hwe tmp_b.hwe
@@ -84,7 +84,7 @@ rm shared_snps.txt HWe_snps.log
 echo ""
 
 echo "04.- Deleting biallelic SNPs fixed for the same allele in both groups"
-Rscript Deleting_same_fixed_allele.R
+Deleting_same_fixed_allele.R
 # Another small format change
 tr "," "\t" < diagnostic_snps.txt > ${o}/${p}.DiagnoSNPs.txt
 rm HWe_snps.hwe diagnostic_snps.txt
