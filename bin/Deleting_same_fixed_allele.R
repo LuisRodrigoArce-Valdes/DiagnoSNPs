@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 # Deleting_same_fixed_allele.R script
 # As part of the DiagnoSNPs package
 # This script deletes shared fixed allele SNPs between two groups:

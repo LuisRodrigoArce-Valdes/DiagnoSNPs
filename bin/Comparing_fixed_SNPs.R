@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 # Comparing_fixed_SNPs.R script
 # As part of the DiagnoSNPs package
 # This script looks for shared fixed SNPs between two groups:
