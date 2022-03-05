@@ -1,5 +1,5 @@
 #!/bin/bash
-version=1.0
+version=1.1
 
 usage() {
 echo "DiagnoSNPs.sh v $version by Luis Rodrigo Arce-Valdés (04/04/2021)
@@ -68,7 +68,6 @@ echo "Looking for fixed SNPs in ${a}"
 vcftools --vcf ${v} --keep ${a} --max-maf 0 --hardy --out tmp_a
 echo "Looking for fixed SNPs in ${b}"
 vcftools --vcf ${v} --keep ${b} --max-maf 0 --hardy --out tmp_b
-rm tmp_a.log tmp_b.log
 echo ""
 
 echo "02.- Looking for SNPs that are fixed in both populations"
@@ -80,7 +79,7 @@ echo ""
 
 echo "03.- HardyWeinberg testing fixed SNPs"
 vcftools --vcf ${v} --keep ${a} --keep ${b} --positions shared_snps.txt --hardy --out HWe_snps
-rm shared_snps.txt HWe_snps.log
+rm shared_snps.txt
 echo ""
 
 echo "04.- Deleting biallelic SNPs fixed for the same allele in both groups"
