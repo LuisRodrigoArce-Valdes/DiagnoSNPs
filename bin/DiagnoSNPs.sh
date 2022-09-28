@@ -23,6 +23,9 @@ Petr Danecek, Adam Auton, Goncalo Abecasis, Cornelis A. Albers, Eric Banks, Mark
 R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
 You need to have installed both vcftools and R in your OS for DiagnoSNPs.sh to work. If you use this script you must cite on your paper both vcftools and R software.
+
+Output:
+The outout of this software is written as a tab delimited file. Each line containing the chromosome and position of SNPs with diagnostic SNPs. Thus, it can be used to subset the original vcf file using vcftools' --positions <filename> option.
 " 1>&2
 exit 1
 }
@@ -65,27 +68,27 @@ echo ""
 
 echo "01.- Creating list of SNPs fixed for one allele for each group"
 echo "Looking for fixed SNPs in ${a}"
-vcftools --vcf ${v} --keep ${a} --max-maf 0 --hardy --out tmp_a
+vcftools --vcf ${v} --keep ${a} --max-mac 0 --hardy --out tmp_a
 echo "Looking for fixed SNPs in ${b}"
-vcftools --vcf ${v} --keep ${b} --max-maf 0 --hardy --out tmp_b
+vcftools --vcf ${v} --keep ${b} --max-mac 0 --hardy --out tmp_b
 echo ""
 
 echo "02.- Looking for SNPs that are fixed in both populations"
 Comparing_fixed_SNPs.R
 # Small format change
 tr "," "\t" < shared.txt > shared_snps.txt
-rm shared.txt tmp_a.hwe tmp_b.hwe
+#rm shared.txt tmp_a.hwe tmp_b.hwe
 echo ""
 
 echo "03.- HardyWeinberg testing fixed SNPs"
 vcftools --vcf ${v} --keep ${a} --keep ${b} --positions shared_snps.txt --hardy --out HWe_snps
-rm shared_snps.txt
+#rm shared_snps.txt
 echo ""
 
 echo "04.- Deleting biallelic SNPs fixed for the same allele in both groups"
-Deleting_same_fixed_allele.R
+# Deleting_same_fixed_allele.R
 # Another small format change
-tr "," "\t" < diagnostic_snps.txt > ${o}/${p}.DiagnoSNPs.txt
-rm HWe_snps.hwe diagnostic_snps.txt
+#tr "," "\t" < diagnostic_snps.txt > ${o}/${p}.DiagnoSNPs.txt
+#rm HWe_snps.hwe diagnostic_snps.txt
 
-echo "Finished running DiagnoSNPs.sh. Your list of alternatively fixed SNPs is ${o}/${p}.DiagnoSNPs.txt"
+#echo "Finished running DiagnoSNPs.sh. Your list of alternatively fixed SNPs is ${o}/${p}.DiagnoSNPs.txt"

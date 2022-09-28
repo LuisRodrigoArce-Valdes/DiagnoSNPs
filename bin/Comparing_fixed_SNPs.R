@@ -9,10 +9,7 @@ hwe$a <- read.table("tmp_a.hwe", header = T)
 hwe$b <- read.table("tmp_b.hwe", header = T)
 
 # Creating loci names
-for (i in 1:length(hwe)) {
-  hwe[[i]]$names <- paste(hwe[[i]]$CHR, hwe[[i]]$POS, sep = ",")
-  
-}
+lapply(hwe, function(x) data.frame(x, names=paste(x$CHR, x$POS, sep=","))) -> hwe
 
 # Looking for shared loci between species
 shared <- intersect(hwe$a$names, hwe$b$names)
